@@ -1,5 +1,5 @@
 // 일러스트 / 디자인 포트폴리오 핀터레스트 스타일 그리드 데이터
-// image: /public/images 폴더에 실제 이미지를 넣고 경로만 바꿔주세요. (없으면 placeholder 그라디언트 사용)
+// image: /images 폴더에 실제 이미지를 넣고 경로만 바꿔주세요. (없으면 placeholder 그라디언트 사용)
 // ratio: 각 항목의 높이를 다르게 주는 aspect-ratio 클래스. 값이 다양할수록 매이슨리 효과가 자연스럽습니다.
 // description: 클릭 시 뜨는 팝업에 노출되는 소개 문구입니다.
 
@@ -14,7 +14,7 @@ export const illustrations = [
   {
     id: "left1",
     title: "내추럴 온 화장품 패키지 및 홍보 비주얼 디자인",
-    image: "/public/images/design_left_1.webp",
+    image: "/images/design_left_1.webp",
     gradient: "from-blue-500 via-blue-400 to-orange-300",
     ratio: "aspect-[3/4]",
     description:
@@ -23,7 +23,7 @@ export const illustrations = [
   {
     id: "left2",
     title: "탱고(Tango)",
-    image: "/public/images/design_left_2.webp",
+    image: "/images/design_left_2.webp",
     gradient: "from-yellow-400 via-emerald-500 to-orange-500",
     ratio: "aspect-[4/3]",
     description:
@@ -32,7 +32,7 @@ export const illustrations = [
   {
     id: "left3",
     title: "어느 시골의 나른한 오후 바닷가",
-    image: "/public/images/design_left_3.webp",
+    image: "/images/design_left_3.webp",
     gradient: "from-sky-600 via-sky-500 to-sky-400",
     ratio: "aspect-[4/5]",
     description:
@@ -41,7 +41,7 @@ export const illustrations = [
   {
     id: "left4",
     title: "쏘내추럴(SO'NATURAL) 브랜드 인증 및 홍보 비주얼 디자인",
-    image: "/public/images/design_left_4.webp",
+    image: "/images/design_left_4.webp",
     gradient: "from-teal-400 via-emerald-400 to-yellow-300",
     ratio: "aspect-[4/7.5]",
     description:
@@ -50,7 +50,7 @@ export const illustrations = [
   {
     id: "left5",
     title: "Universal",
-    image: "/public/images/design_left_5.webp",
+    image: "/images/design_left_5.webp",
     gradient: "from-orange-600 via-amber-500 to-yellow-400",
     ratio: "aspect-[4/6.5]",
     description:
@@ -59,7 +59,7 @@ export const illustrations = [
   {
     id: "left6",
     title: "시간 속의 동행",
-    image: "/public/images/design_left_6.webp",
+    image: "/images/design_left_6.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/3.5]",
     description:
@@ -68,7 +68,7 @@ export const illustrations = [
   {
     id: "left7",
     title: "히든태그 제품 서울 코스모뷰티 박람회 SNS 홍보 비주얼 디자인",
-    image: "/public/images/design_left_7.webp",
+    image: "/images/design_left_7.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/5]",
     description:
@@ -77,7 +77,7 @@ export const illustrations = [
   {
     id: "right1",
     title: "편견 없는 아름다움",
-    image: "/public/images/design_right_1.webp",
+    image: "/images/design_right_1.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/3.2]",
     description:
@@ -86,7 +86,7 @@ export const illustrations = [
   {
     id: "right2",
     title: "변화의 유동성 (Fluidity of Change)",
-    image: "/public/images/design_right_2.webp",
+    image: "/images/design_right_2.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/5.3]",
     description:
@@ -95,7 +95,7 @@ export const illustrations = [
   {
     id: "right3",
     title: "Solar Core (에너지 폭발 아트워크)",
-    image: "/public/images/design_right_3.webp",
+    image: "/images/design_right_3.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/3]",
     description:
@@ -104,7 +104,7 @@ export const illustrations = [
   {
     id: "right4",
     title: "샤이닝 소울",
-    image: "/public/images/design_right_4.webp",
+    image: "/images/design_right_4.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/3]",
     description:
@@ -113,7 +113,7 @@ export const illustrations = [
   {
     id: "right5",
     title: "경계의 밤",
-    image: "/public/images/design_right_5.webp",
+    image: "/images/design_right_5.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/5.7]",
     description:
@@ -122,7 +122,7 @@ export const illustrations = [
   {
     id: "right6",
     title: "OSTKAKA 브랜드 시그니처 컬렉션 및 정품 인증 페이지 디자인",
-    image: "/public/images/design_right_6.webp",
+    image: "/images/design_right_6.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/11.7]",
     description:
@@ -131,7 +131,7 @@ export const illustrations = [
   {
     id: "right7",
     title: "코카콜라 명함 디자인 제작",
-    image: "/public/images/design_right_7.webp",
+    image: "/images/design_right_7.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/4.6]",
     description:
@@ -140,7 +140,7 @@ export const illustrations = [
   {
     id: "right8",
     title: "쿨비어 (Cool Beer)",
-    image: "/public/images/design_right_8.webp",
+    image: "/images/design_right_8.webp",
     gradient: "from-green-700 via-green-600 to-lime-500",
     ratio: "aspect-[4/4.8]",
     description:
