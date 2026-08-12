@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+/* ── 브랜드 토큰 ──────────────────────────────────────────────
+   컬러를 한 곳에서 정의하면 Tailwind가 bg-brand-cyan, text-brand-cyan,
+   border-brand-cyan 등의 유틸리티를 자동 생성합니다.
+   컬러를 바꾸고 싶으면 이 값만 수정하면 사이트 전체에 반영됩니다. */
+@theme {
+  --color-brand-cyan: #67e8f9;
+  --color-brand-lime: #a3e635;
+  --color-brand-fuchsia: #e879f9;
+  --color-brand-red: #dc2626;
+}
+
+/* ── 공통 유틸리티 ────────────────────────────────────────────
+   여러 섹션에서 반복되는 CSS 조합을 커스텀 유틸리티로 묶어
+   각 컴포넌트의 className을 짧게 유지합니다. */
+
+/* 카드/영상 하단에 텍스트 가독성을 위해 까는 그라디언트 스크림 */
+@utility overlay-fade {
+  background-image: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.7),
+    rgb(0 0 0 / 0.1) 60%,
+    transparent
+  );
+}
+
+/* 부모를 기준으로 꽉 채우고 내용을 중앙 정렬 */
+@utility center-abs {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 팝업 설명 패널처럼 얇은 스크롤바가 필요한 곳 */
+@utility thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.35) transparent;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(255 255 255 / 0.35);
+    border-radius: 999px;
+  }
+}
+
+/* 필름스트립처럼 스크롤은 되지만 막대는 숨기고 싶은 곳 */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* AI Film / Premiere Pro / On My Screen Ratings처럼 같은 유형의 섹션에서
+   상하 여백을 통일할 때 쓰는 공통 유틸리티. */
+@utility section-padding {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+  @media (width >= 40rem) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@layer base {
+  /* 클릭 가능한 모든 버튼에 포인터 커서를 강제해 브라우저마다 다른 기본값을 통일합니다. */
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-cyan);
+  outline-offset: 2px;
+}

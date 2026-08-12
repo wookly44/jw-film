@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.wookly44.github.io/jw-film/sitemap.xml
