@@ -5,7 +5,8 @@ export const siteConfig = {
   name: "JW Portfolio",
   image: "/public/images/logo.webp",
   portrait: "/public/images/portrait.webp",
-  email: "info@mysite.com",
+  email: "jujaeu60@gmail.com",
+  phone: "010-7572-2788",
 };
 
 export const navLinks = [
@@ -16,14 +17,19 @@ export const navLinks = [
 ];
 
 export const socialLinks = [
-  { label: "Twitter", href: "https://twitter.com", icon: "twitter" },
-  { label: "Facebook", href: "https://facebook.com", icon: "facebook" },
-  { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-];
-
-export const footerLinks = [
-  { label: "VIMEO", href: "https://vimeo.com" },
-  { label: "INSTAGRAM", href: "https://instagram.com" },
-  { label: "TWITTER", href: "https://twitter.com" },
-  { label: "IMDb", href: "https://imdb.com" },
+  {
+    label: "threads",
+    href: "https://www.threads.com/@motion_jraphic?hl=ko",
+    icon: "threads",
+  },
+  {
+    label: "youtube",
+    href: "https://www.youtube.com/channel/UCfnYD_kEwvwyiYopYTrGv9g",
+    icon: "youtube",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/motion_jraphic/",
+    icon: "instagram",
+  },
 ];

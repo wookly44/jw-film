@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Loader2, CheckCircle2 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
-import { siteConfig, footerLinks } from "../data/site";
+import { siteConfig, socialLinks } from "../data/site";
 import Inner from "../components/layout/Inner";
 
 const initialForm = {
@@ -278,16 +278,25 @@ export default function ContactSection() {
             gutter={false}
             className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs"
           >
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="text-white/70 transition hover:text-white"
-            >
-              {siteConfig.email}
-            </a>
+            <div className="leading-normal">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="text-white/70 transition hover:text-white"
+              >
+                {siteConfig.email}
+              </a>
+              <a
+                href={`mailto:${siteConfig.phone}`}
+                className="text-white/70 transition hover:text-white"
+              >
+                <br />
+                {siteConfig.phone}
+              </a>
+            </div>
 
-            <nav aria-label="Social links">
+            {/* <nav aria-label="Social links">
               <ul className="flex flex-wrap gap-4">
-                {footerLinks.map((link) => (
+                {socialLinks.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
@@ -300,7 +309,7 @@ export default function ContactSection() {
                   </li>
                 ))}
               </ul>
-            </nav>
+            </nav> */}
           </Inner>
         </div>
       </Inner>

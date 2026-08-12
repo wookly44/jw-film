@@ -1,34 +1,63 @@
-// lucide-react는 브랜드(SNS) 아이콘을 제공하지 않으므로 최소한의 커스텀 SVG를 직접 정의합니다.
+// lucide-react는 브랜드(SNS) 아이콘을 제공하지 않으므로
+// 최소한의 커스텀 SVG를 직접 정의합니다.
 // 새 아이콘이 필요하면 이 파일에 추가하고 iconMap에 등록하세요.
 
-const TwitterIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-    <path d="M22 5.9c-.7.33-1.46.55-2.25.65a3.9 3.9 0 0 0 1.72-2.16 7.8 7.8 0 0 1-2.48.95 3.9 3.9 0 0 0-6.65 3.56A11.07 11.07 0 0 1 4.3 4.9a3.9 3.9 0 0 0 1.2 5.2c-.63-.02-1.23-.2-1.75-.48v.05a3.9 3.9 0 0 0 3.13 3.83c-.58.16-1.2.18-1.8.07a3.9 3.9 0 0 0 3.64 2.71A7.83 7.83 0 0 1 2 18.4a11.05 11.05 0 0 0 5.98 1.75c7.17 0 11.1-5.94 11.1-11.1l-.01-.5A7.9 7.9 0 0 0 22 5.9Z" />
+const ThreadsIcon = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    {...props}
+  >
+    <path d="M12.1 2.5c-5.3 0-9.1 3.6-9.1 9.4 0 6 3.4 9.6 9.1 9.6 4.9 0 8.2-2.7 8.2-6.8 0-3.6-2.3-5.8-6.1-6.2-.4-1.8-1.5-2.7-3.4-2.7-1.8 0-3.1 1-3.1 2.4 0 1.4 1.2 2.1 3.6 2.1h.8c.1.5.2 1 .2 1.6v.1c-.5-.1-1-.1-1.5-.1-2.9 0-4.8 1.5-4.8 3.7 0 2.1 1.7 3.5 4.3 3.5 3.2 0 5.3-1.9 5.3-5 0-.5 0-1-.1-1.5 2.1.5 3.2 1.7 3.2 3.5 0 2.6-2.2 4.2-5.9 4.2-4.4 0-7-2.8-7-7.7 0-4.8 2.7-7.5 7.2-7.5 3.5 0 5.7 1.5 6.7 4.4l1.7-.6c-1.2-3.9-4.1-6.3-8.4-6.3Zm-.4 14.9c-1.5 0-2.4-.7-2.4-1.8 0-1.2 1.1-1.9 2.8-1.9.5 0 1 .1 1.5.2 0 2.2-.6 3.5-1.9 3.5Zm-.3-6.8c-1.5 0-2.1-.4-2.1-1.1 0-.6.6-1 1.5-1 .9 0 1.5.5 1.8 1.9-.4.1-.8.2-1.2.2Z" />
   </svg>
 );
 
-const FacebookIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-    <path d="M13.5 21v-7.5H16l.5-3.5h-3V7.8c0-1 .3-1.7 1.7-1.7H16.6V3.1C16.2 3 15.1 3 13.9 3 11.3 3 9.5 4.6 9.5 7.5v2.5H7V13.5h2.5V21h4Z" />
+const YouTubeIcon = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    {...props}
+  >
+    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z" />
   </svg>
 );
 
 const InstagramIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" {...props}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    aria-hidden="true"
+    {...props}
+  >
     <rect x="3" y="3" width="18" height="18" rx="5" />
     <circle cx="12" cy="12" r="4" />
-    <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+    <circle
+      cx="17.2"
+      cy="6.8"
+      r="1"
+      fill="currentColor"
+      stroke="none"
+    />
   </svg>
 );
 
 const iconMap = {
-  twitter: TwitterIcon,
-  facebook: FacebookIcon,
+  threads: ThreadsIcon,
+  youtube: YouTubeIcon,
   instagram: InstagramIcon,
 };
 
-export default function SocialIcon({ name, className = 'w-4 h-4' }) {
+export default function SocialIcon({
+  name,
+  className = "w-4 h-4",
+}) {
   const IconComponent = iconMap[name];
+
   if (!IconComponent) return null;
+
   return <IconComponent className={className} />;
 }

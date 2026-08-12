@@ -23,7 +23,7 @@ export default function App() {
           <ContactSection />
         </main>
         <Footer />
-        <SocialFab />
+        {/* <SocialFab /> */}
       </div>
     </ErrorBoundary>
   );
