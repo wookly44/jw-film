@@ -3,8 +3,8 @@
 
 export const siteConfig = {
   name: "JW Portfolio",
-  image: `${import.meta.env.BASE_URL}/images/logo.webp`,
-  portrait: `${import.meta.env.BASE_URL}/images/portrait.webp`,
+  image: `${import.meta.env.BASE_URL}images/logo.webp`,
+  portrait: `${import.meta.env.BASE_URL}images/portrait.webp`,
   email: "jujaeu60@gmail.com",
   phone: "010-7572-2788",
 };
