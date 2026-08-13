@@ -10,7 +10,7 @@ import { getProjectThumbnail } from "../../data/videoProjects";
 //
 // 상단 바(뱃지+닫기)
 // 좌측 미디어 / 우측 정보 패널
-// 하단 필름스트립
+// 하단 필름스트립 (현재 선택된 항목이 항상 보이도록 자동 스크롤)
 // 좌우 이전/다음 탐색
 //
 // VideoPopup(유튜브 영상)과 ImagePopup(이미지)이 이 뼈대를 공유합니다.
@@ -24,6 +24,9 @@ function PopupShell({
   infoImage,
   media,
   mediaFit = "cover",
+  // 이미지 팝업 전용: true면 이미지를 가로 100%로 채우고 세로 스크롤로 전체를 봅니다.
+  // false(기본)면 기존처럼 잘리지 않고 이미지 전체가 한 번에 보입니다.
+  mediaScroll = false,
   items,
   activeId,
   thumbOf,
@@ -33,6 +36,7 @@ function PopupShell({
   const titleId = useId();
   const closeButtonRef = useRef(null);
   const previouslyFocused = useRef(null);
+  const activeThumbRef = useRef(null);
 
   const activeIndex = items.findIndex((item) => item.id === activeId);
 
@@ -93,6 +97,23 @@ function PopupShell({
     };
   }, [onClose, onSelect, nextItem, prevItem]);
 
+  // 필름스트립: 이전/다음으로 활성 항목이 바뀔 때마다 그 썸네일이 항상 보이도록
+  // 필름스트립을 자동으로 스크롤합니다. (끝까지 안 넘어가고 중간에 멈추던 문제 해결)
+  useEffect(() => {
+    activeThumbRef.current?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }, [activeId]);
+
+  const mediaBoxClass =
+    mediaFit === "contain"
+      ? mediaScroll
+        ? "max-h-[70vh] overflow-y-auto bg-black thin-scrollbar"
+        : "flex max-h-[70vh] items-center justify-center overflow-hidden bg-black"
+      : "aspect-video overflow-hidden bg-black";
+
   return createPortal(
     <AnimatePresence>
       <motion.div
@@ -131,33 +152,30 @@ function PopupShell({
 
           {/* 메인 영역 */}
           <div className="grid flex-1 grid-cols-1 gap-6 overflow-y-auto p-4 thin-scrollbar sm:grid-cols-[1fr_300px] sm:p-6">
-            {/* 미디어 */}
-            <div
-              className={
-                mediaFit === "contain"
-                  ? "flex h-[45vh] max-h-[45vh] justify-center overflow-hidden bg-black sm:h-[51vh] sm:max-h-[60vh]"
-                  : "aspect-video overflow-hidden bg-black"
-              }
-            >
-              {media}
-            </div>
+            {/* 미디어: 이미지 팝업은 높이를 강제하지 않고 이미지 크기에 따라 늘어나며,
+                mediaScroll이 true면 가로를 꽉 채우고 세로 스크롤로 전체를 봅니다. */}
+            <div className={mediaBoxClass}>{media}</div>
 
-            {/* 프로젝트 정보 */}
-            <div>
-              <h2 id={titleId} className="text-2xl font-bold text-white">
-                {title}
-              </h2>
+            {/* 프로젝트 정보: 항목 사이 간격을 넉넉하게 */}
+            <div className="space-y-5">
+              <div>
+                <h2 id={titleId} className="text-2xl font-bold text-white">
+                  {title}
+                </h2>
 
-              {meta && <p className="mt-1 text-xs text-white/50">{meta}</p>}
+                {meta && (
+                  <p className="mt-2 text-xs text-white/50">{meta}</p>
+                )}
+              </div>
 
               {point && (
-                <p className="mt-3 text-sm font-medium leading-relaxed text-amber-300">
+                <p className="text-sm font-medium leading-relaxed text-amber-300">
                   {point}
                 </p>
               )}
 
               {infoImage && (
-                <div className="mt-4 overflow-hidden rounded-lg bg-neutral-900">
+                <div className="overflow-hidden rounded-lg bg-neutral-900">
                   <img
                     src={infoImage}
                     alt={`${title} 추가 이미지`}
@@ -167,7 +185,7 @@ function PopupShell({
                 </div>
               )}
 
-              <p className="mt-4 max-h-40 overflow-y-auto whitespace-pre-line pr-2 text-sm leading-relaxed text-white/70 thin-scrollbar sm:max-h-56">
+              <p className="max-h-40 overflow-y-auto whitespace-pre-line pr-2 text-sm leading-relaxed text-white/70 thin-scrollbar sm:max-h-56">
                 {description || "소개 문구가 아직 없습니다."}
               </p>
             </div>
@@ -192,15 +210,17 @@ function PopupShell({
               <div className="flex gap-2 overflow-x-auto p-3 no-scrollbar sm:p-4 sm:px-14">
                 {items.map((item) => {
                   const thumbnail = thumbOf(item);
+                  const isActive = item.id === activeId;
 
                   return (
                     <button
                       key={item.id}
+                      ref={isActive ? activeThumbRef : null}
                       type="button"
                       onClick={() => onSelect(item)}
-                      aria-current={item.id === activeId}
+                      aria-current={isActive}
                       className={`relative aspect-video w-28 shrink-0 overflow-hidden rounded transition sm:w-32 ${
-                        item.id === activeId
+                        isActive
                           ? "ring-2 ring-brand-cyan"
                           : "opacity-70 hover:opacity-100"
                       }`}
@@ -208,6 +228,7 @@ function PopupShell({
                       <PlaceholderMedia
                         image={thumbnail}
                         alt={item.title}
+                        gradient={item.gradient}
                         label={item.title}
                       />
 
@@ -320,6 +341,10 @@ export function VideoPopup({ project, projects, onSelect, onClose }) {
 
 export function ImagePopup({ item, items, onSelect, onClose }) {
   const hasInfoImage = Boolean(item.infoImage);
+  // infoImage(추가 이미지)가 있으면 두 장을 세로로 이어 보여줘야 하므로 항상 스크롤 모드로 표시하고,
+  // 그 외에는 data의 scroll 값을 그대로 따릅니다.
+  const scroll = hasInfoImage || Boolean(item.scroll);
+  const fit = scroll ? "full-width" : "natural";
 
   return (
     <PopupShell
@@ -327,43 +352,29 @@ export function ImagePopup({ item, items, onSelect, onClose }) {
       meta={item.score}
       description={item.description}
       media={
-        <div
-          className={
-            hasInfoImage
-              ? "flex h-full w-full flex-col gap-3 overflow-y-auto bg-black p-3 thin-scrollbar"
-              : "h-full w-full bg-black"
-          }
-        >
-          {/* Main Image */}
-          <div
-            className={
-              hasInfoImage
-                ? "relative w-full shrink-0 overflow-hidden"
-                : "relative h-full w-full overflow-hidden"
-            }
-          >
-            <PlaceholderMedia
-              image={item.image}
-              alt={item.title}
-              label={item.title}
-              fit="contain"
-            />
-          </div>
+        <div className={hasInfoImage ? "flex w-full flex-col gap-3 bg-black p-3" : "w-full"}>
+          <PlaceholderMedia
+            image={item.image}
+            alt={item.title}
+            gradient={item.gradient}
+            label={item.title}
+            fit={fit}
+          />
 
           {/* 추가 이미지가 있는 특수 케이스 */}
           {hasInfoImage && (
-            <div className="relative w-full shrink-0 overflow-hidden">
-              <PlaceholderMedia
-                image={item.infoImage}
-                alt={`${item.title} 추가 이미지`}
-                label={`${item.title} 추가 이미지`}
-                fit="contain"
-              />
-            </div>
+            <PlaceholderMedia
+              image={item.infoImage}
+              alt={`${item.title} 추가 이미지`}
+              gradient={item.gradient}
+              label={`${item.title} 추가 이미지`}
+              fit="full-width"
+            />
           )}
         </div>
       }
       mediaFit="contain"
+      mediaScroll={scroll}
       items={items}
       activeId={item.id}
       thumbOf={(it) => it.image}

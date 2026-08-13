@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Loader2, CheckCircle2 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
-import { siteConfig, socialLinks } from "../data/site";
+import { siteConfig } from "../data/site";
 import Inner from "../components/layout/Inner";
 
 const initialForm = {
@@ -286,7 +286,7 @@ export default function ContactSection() {
                 {siteConfig.email}
               </a>
               <a
-                href={`mailto:${siteConfig.phone}`}
+                href={`tel:${siteConfig.phone}`}
                 className="text-white/70 transition hover:text-white"
               >
                 <br />

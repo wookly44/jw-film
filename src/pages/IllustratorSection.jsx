@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import PlaceholderMedia from "../components/ui/PlaceholderMedia";
 import Inner from "../components/layout/Inner";
 import { ImagePopup } from "../components/common/Popup";
-import { illustrator, illustrations } from "../data/illustrations";
+import { illustrations } from "../data/illustrations";
 
 export default function IllustratorSection() {
   const [active, setActive] = useState(null);

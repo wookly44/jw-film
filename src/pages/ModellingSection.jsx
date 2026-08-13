@@ -27,10 +27,12 @@ export default function ModellingSection() {
               aria-label={`${item.title} 자세히 보기`}
               className="group relative aspect-[4/3] overflow-hidden text-left"
             >
-              <img
-                src={item.image}
+              <PlaceholderMedia
+                image={item.image}
                 alt={item.title}
-                className="h-full transition duration-500 group-hover:scale-105"
+                gradient={item.gradient}
+                label={item.title}
+                className="transition duration-500 group-hover:scale-105"
               />
               <div className="pointer-events-none absolute inset-0 overlay-fade" />
               <div className="absolute bottom-4 left-4 right-4">

@@ -1,5 +1,5 @@
 import ErrorBoundary from "./components/common/ErrorBoundary";
-import SocialFab from "./components/common/SocialFab";
+// import SocialFab from "./components/common/SocialFab";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Hero from "./pages/Hero";
